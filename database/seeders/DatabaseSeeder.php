@@ -6,7 +6,6 @@ use App\Models\Category;
 use App\Models\Product;
 use App\Models\Transaction;
 use App\Models\User;
-use Carbon\Factory;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -21,6 +20,7 @@ class DatabaseSeeder extends Seeder
     {
         DB::statement('SET FOREIGN_KEY_CHECKS = 0');
 
+        // remove all data from tables and reset the id counter to 0
         User::truncate();
         Transaction::truncate();
         Category::truncate();
