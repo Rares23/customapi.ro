@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use Exception;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -48,7 +49,12 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        try {
+            $user = User::findOrFail($id);
+            return response()->json(['user' => $user], 200);
+        } catch(Exception $e){
+            return response()->json(['message' => 'User not found!'], 200);
+        }
     }
 
     /**
